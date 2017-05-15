@@ -95,7 +95,9 @@ export function makeDeepstreamDriver({url, options = {}, debug = false}:
         name = name + scope
       }
       if (eventCallbacks[name] === undefined) {
-        eventCallbacks[name] = (data: any) => emit(data, scope)
+        eventCallbacks[name] = (data: any) => emit({ event: name, ...data }, scope)
+
+        
       }
       return eventCallbacks[name]
     }
